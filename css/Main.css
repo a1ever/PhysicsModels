@@ -78,7 +78,7 @@ header{
     width: 100%;
     height: 100%;
     background-position: center;
-    background-image: url("../../ITMOPhysicsModels/css/images/img.png");
+    background-image: url("https://github.com/a1ever/ITMOPhysicsModels/blob/master/css/images/img.png?raw=true");
     background-size: cover;
     filter: blur(100px);
     z-index: 0;
