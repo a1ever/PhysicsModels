@@ -27,14 +27,20 @@ function buildGraphic() {
                 title: 'x, м',
             },
             yaxis: {
-                title: 'В, Тл',
+                title: 'В, Т',
             },
             plot_bgcolor: '#363636',
             paper_bgcolor: '#050505',
             font: {
                 color: '#FFFFFF',
-                family: 'Deutsch Gothic',
+                family: 'American TextC',
             },
             colorway: ['#ee840c'],
+            autosize: true,
+        },{
+            scrollZoom: true,
+            displayModeBar: true,
+            displaylogo: false,
+            responsive: true,
         });
 }
