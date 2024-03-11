@@ -5,7 +5,7 @@ header.innerHTML = "<header>\n" +
     "                <ul>\n" +
     "                    <li class=\"active\"><a href=\"https://a1ever.github.io/ITMOPhysicsModels/\">Home</a></li>\n" +
     "                    <li><a href=\"#\">About Me</a></li>\n" +
-    "                    <li><a href=\"#\">GitHub</a></li>\n" +
+    "                    <li><a href=\"https://github.com/a1ever?tab=repositories\">GitHub</a></li>\n" +
     "                </ul>\n" +
     "            </div>\n" +
     "        </nav>\n" +

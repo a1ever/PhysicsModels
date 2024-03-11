@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/fonts/americantext.css">
+    <link rel="stylesheet" href="../css/Main.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script defer src="../js/Tasks/Task4.js"></script>
+    <script defer src="../js/header.js"></script>
+</head>
+<body>
+<div id="header"></div>
+<main class="wrap">
+    <div class="background"></div>
+    <div class="info">
+        <fieldset>
+            <legend>Helmholtz coil magnetic field</legend>
+            <label for="tesla">Magnetic induction:</label>
+            <input type="number" min=0 step="any" id="tesla" name="tesla" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="hertz">Rotation frequency:</label>
+            <input type="number" min=0 step="any" id="hertz" name="hertz" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="ohm">Resistance:</label>
+            <input type="number" min=0 step="any" id="ohm" name="ohm" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="square">Contour area:</label>
+            <input type="number" min=0 step="any" id="square" name="square" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <br>
+            <input type="submit" id="build" value="Get graph">
+        </fieldset><br>
+    </div>
+    <div id="answer1" class="graph"></div>
+    <div id="answer2" class="graph"></div>
+</main>
+
+
+
+</body>
+</html>
