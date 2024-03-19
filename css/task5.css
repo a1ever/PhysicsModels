@@ -1,0 +1,13 @@
+.image {
+    width: 20%;
+    position:relative;
+    left:50%;
+    top:50%;
+    transform: translateX(-50%);
+}
+
+.info{
+    height: auto;
+    padding-bottom: 2%;
+    align-content: center;
+}
