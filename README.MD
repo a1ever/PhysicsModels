@@ -1,0 +1,1 @@
+[Графики на различные физические явления](https://a1ever.github.io/ITMOPhysicsModels/)
