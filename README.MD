@@ -1,1 +1,1 @@
-[Графики на различные физические явления](https://a1ever.github.io/ITMOPhysicsModels/)
+[Сайт с графиками на различные физические явления](https://a1ever.github.io/ITMOPhysicsModels/)
