@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Currents during circuit closure/disconnection</title>
     <link rel="stylesheet" href="../css/fonts/americantext.css">
     <link rel="stylesheet" href="../css/Main.css">
     <link rel="stylesheet" href="../css/task5.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script defer src="../js/Tasks/Task5.js"></script>
     <script defer src="../js/header.js"></script>
+    <title></title>
 </head>
 <body>
 <div id="header"></div>
@@ -16,7 +16,7 @@
     <div class="background"></div>
     <div class="info">
         <fieldset>
-            <legend>Currents during circuit closure/disconnection</legend>
+            <legend id="legend"></legend>
             <label for="inductance">Inductance:</label>
             <input type="number" min=0 step="any" id="inductance" name="inductance" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
             <label for="ohm">Resistance:</label>
@@ -36,8 +36,10 @@
         <div id="answer2" class="graph task5gr"></div>
     </div>
 </main>
-
-
-
 </body>
+<script>
+    name = "Currents during circuit closure/disconnection"
+    document.title = name
+    document.getElementById("legend").insertAdjacentText("afterbegin", name)
+</script>
 </html>

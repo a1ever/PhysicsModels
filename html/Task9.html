@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AM signal</title>
     <link rel="stylesheet" href="../css/fonts/americantext.css">
     <link rel="stylesheet" href="../css/Main.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script defer src="../js/Tasks/Task9.js"></script>
     <script defer src="../js/header.js"></script>
+    <title></title>
 </head>
 <body>
 <div id="header"></div>
@@ -15,7 +15,7 @@
     <div class="background"></div>
     <div class="info">
         <fieldset>
-            <legend>AM signal</legend>
+            <legend id="legend"></legend>
             <label for="freq1">Carrier wave frequency (Hz):</label>
             <input type="number" min=0 step="any" id="freq1" name="freq1" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
             <label for="freq2">Information-bearing signal frequency (Hz):</label>
@@ -34,8 +34,10 @@
     <div id="answer42" class="graph"></div>
     <div id="answer43" class="graph"></div>
 </main>
-
-
-
 </body>
+<script>
+    name = "Amplitude modulation"
+    document.title = name
+    document.getElementById("legend").insertAdjacentText("afterbegin", name)
+</script>
 </html>
