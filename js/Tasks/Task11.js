@@ -47,7 +47,7 @@ function buildGraphic() {
         let i2 = R;
         xs.push(x);
         xs2.push(x);
-        ys.push(i2 + i1 + 2 * Math.sqrt(i1 * i2) * Math.cos(2 * Math.PI / lambda * (lambda/2 + nBetween * Math.pow(x, 2) / (2 * r))));
+        ys.push(i2 + i1 + 2 * Math.sqrt(i1 * i2) * Math.cos(2 * Math.PI / lambda * (lambda/2 * (nBetween>nPlate?0:1) + nBetween * Math.pow(x, 2) / (2 * r))));
     }
 
     let graphSettings = {
