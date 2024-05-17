@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/fonts/americantext.css">
+    <link rel="stylesheet" href="../css/Main.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script defer src="../js/Tasks/Task11.js"></script>
+    <script defer src="../js/header.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="header"></div>
+<main class="wrap">
+    <div class="background"></div>
+    <div class="info">
+        <fieldset>
+            <legend id="legend"></legend>
+            <label for="wavelength">Wavelength of light (nm):</label>
+            <input type="number" min=0 step="any" id="wavelength" name="wavelength" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="radius">Lens radius (m):</label>
+            <input type="number" min=0 step="any" id="radius" name="radius" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="coeffLens">Refractive index (lens):</label>
+            <input type="number" min=0 step=0.01 value=1.501 id="coeffLens" name="coeffLens" oninput="validity.valid||(value='');"/><br>
+            <label for="coeffPlate">Refractive index (Plate):</label>
+            <input type="number" min=0 step=0.01 value=1.501 id="coeffPlate" name="coeffPlate" oninput="validity.valid||(value='');"/><br>
+            <label for="coeffBetween">Refractive index (between):</label>
+            <input type="number" min=0 step=0.01 value=1.001 id="coeffBetween" name="coeffBetween" oninput="validity.valid||(value='');"/><br>
+            <br>
+            <input type="submit" id="build" value="Get graph">
+        </fieldset><br>
+    </div>
+
+    <div id="answer1" class="graph"></div>
+    <div id="answer2" class="graph"></div>
+</main>
+</body>
+<script>
+    name = "Newton's rings"
+    document.title = name
+    document.getElementById("legend").insertAdjacentText("afterbegin", name)
+</script>
+</html>
