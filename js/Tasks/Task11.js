@@ -107,6 +107,8 @@ function buildGraphic() {
                 showgrid: false,
                 zeroline: false,
                 showticklabels: false,
+                scaleanchor:"x",
+                scaleratio: 1,
             },
             plot_bgcolor: '#363636',
             paper_bgcolor: '#050505',
