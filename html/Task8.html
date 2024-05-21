@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/fonts/americantext.css">
+    <link rel="stylesheet" href="../css/Main.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script defer src="../js/Tasks/Task8.js"></script>
+    <script defer src="../js/header.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="header"></div>
+<main class="wrap">
+    <div class="background"></div>
+    <div class="info">
+        <fieldset>
+            <legend id="legend"></legend>
+            <label for="freq1">Carrier wave frequency (Hz):</label>
+            <input type="number" min=0 step="any" id="freq1" name="freq1" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="freq2">Information-bearing signal frequency (Hz):</label>
+            <input type="number" min=0 step="any" id="freq2" name="freq2" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="coeff">The modulation coefficient:</label>
+            <input type="number" min=0 step=0.01 value=0.666 id="coeff" name="coeff" oninput="validity.valid||(value='');"/><br>
+            <br>
+            <input type="submit" id="build" value="Get graph">
+        </fieldset><br>
+    </div>
+
+    <div id="answer1" class="graph"></div>
+    <div id="answer2" class="graph"></div>
+    <div id="answer3" class="graph"></div>
+    <div id="answer41" class="graph"></div>
+    <div id="answer42" class="graph"></div>
+    <div id="answer43" class="graph"></div>
+</main>
+</body>
+<script>
+    name = "Amplitude modulation"
+    document.title = name
+    document.getElementById("legend").insertAdjacentText("afterbegin", name)
+</script>
+</html>

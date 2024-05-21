@@ -1,18 +1,53 @@
 document.getElementById("build").addEventListener("click", buildGraphic);
 
+function normalizeValues(arr) {
+    const min = Math.min(...arr);
+    const max = Math.max(...arr);
+    return arr.map(value => (value - min) / (max - min));
+}
+
+function createCircleGrid(xs, zs) {
+    const radius = Math.floor(xs.length);
+    const gridSize = 2 * radius + 1;
+    const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(0));
+    const centerX = radius;
+    const centerY = radius;
+
+    const normalizedZs = normalizeValues(zs);
+    normalizedZs.forEach((value, index) => {
+        for (let j = 0; j < 360; j+=0.01) {
+            let angle = j*Math.PI/180;
+            const x = centerX+  Math.round(index * Math.cos(angle));
+            const y = centerY+Math.round(index * Math.sin(angle));
+            grid[y][x] = value;
+        }
+    });
+
+    return grid;
+}
+
 function buildGraphic() {
-    const lambda = parseFloat(document.getElementById('wavelength').value);
-    const n = parseFloat(document.getElementById('coeff').value) * 1e-9;
-    const d = parseFloat(document.getElementById('distBetween').value);
-    const l = parseFloat(document.getElementById('distScreen').value);
-    const L = n * l;
+    const lambda = parseFloat(document.getElementById('wavelength').value) * 1e-9;
+    const nBetween = parseFloat(document.getElementById('coeffBetween').value);
+    const nPlate = parseFloat(document.getElementById('coeffPlate').value);
+    const nLens = parseFloat(document.getElementById('coeffLens').value);
+    const r = parseFloat(document.getElementById('radius').value);
 
     const xs = [];
-    const zs = [];
-    const precision = 1000;
-    for (let x = -10; x <= 10; x += 1 / precision) {
+    const xs2 = [];
+    const ys = [];
+    const precision = 100000;
+    const R = Math.pow((nBetween-nPlate)/(nBetween+nPlate), 2);
+    const T = (4 * nBetween * nLens)/ Math.pow(nBetween+nLens, 2);
+    for (let x = -0.00333; x < 0; x += 1 / precision) {
+        xs2.push(x);
+    }
+    for (let x = 0; x <= 0.00333; x += 1 / precision) {
+        let i1 = Math.pow(T, 2) * R;
+        let i2 = R;
         xs.push(x);
-        zs.push(4 * Math.pow(Math.cos((Math.PI * d * x) / (lambda * L)), 2));
+        xs2.push(x);
+        ys.push(i2 + i1 + 2 * Math.sqrt(i1 * i2) * Math.cos(2 * Math.PI / lambda * (lambda/2 * (nBetween>nPlate?0:1) + nBetween * Math.pow(x, 2) / (2 * r))));
     }
 
     let graphSettings = {
@@ -22,8 +57,29 @@ function buildGraphic() {
         responsive: true,
     };
 
-    Plotly.newPlot("answer1", [{
-            x: xs, z: [zs], type: "heatmap", colorscale: [
+    Plotly.newPlot("answer1", [{x: xs, y: ys, mode: "lines"}],
+        {
+            title: "I(r)",
+            xaxis: {
+                title: 'r, m',
+            },
+            yaxis: {
+                autorange: true,
+                title: 'Intensity, W/m^2',
+            },
+            plot_bgcolor: '#363636',
+            paper_bgcolor: '#050505',
+            font: {
+                color: '#FFFFFF',
+                family: 'American TextC',
+            },
+            colorway: ['#ee840c'],
+            autosize: true,
+        }, graphSettings);
+
+
+    Plotly.newPlot("answer2", [{
+             y: xs2, x: xs2, z: createCircleGrid(xs, ys), type: "heatmap", colorscale: [
                 [0, "rgb(0, 0, 0)"],
                 [0.1, "rgb(20, 20, 20)"],
                 [0.2, "rgb(40, 40, 40)"],
@@ -39,16 +95,20 @@ function buildGraphic() {
             showscale: false,
         }],
         {
-            title: "Interference",
+            title: "Newton's Rings",
             xaxis: {
                 autorange: true,
-                title: 'x, m',
+                showgrid: false,
+                zeroline: false,
+                showticklabels: false,
             },
             yaxis: {
                 autorange: true,
                 showgrid: false,
                 zeroline: false,
                 showticklabels: false,
+                scaleanchor:"x",
+                scaleratio: 1,
             },
             plot_bgcolor: '#363636',
             paper_bgcolor: '#050505',

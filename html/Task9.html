@@ -16,27 +16,24 @@
     <div class="info">
         <fieldset>
             <legend id="legend"></legend>
-            <label for="freq1">Carrier wave frequency (Hz):</label>
-            <input type="number" min=0 step="any" id="freq1" name="freq1" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
-            <label for="freq2">Information-bearing signal frequency (Hz):</label>
-            <input type="number" min=0 step="any" id="freq2" name="freq2" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
-            <label for="coeff">The modulation coefficient:</label>
-            <input type="number" min=0 step=0.01 value=0.666 id="coeff" name="coeff" oninput="validity.valid||(value='');"/><br>
+            <label for="wavelength">Wavelength of light (nm):</label>
+            <input type="number" min=0 step="any" id="wavelength" name="wavelength" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="distScreen">Distance between the slit and screen (m):</label>
+            <input type="number" min=0 step="any" id="distScreen" name="distScreen" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="distBetween">Slit separation (m):</label>
+            <input type="number" min=0 step="any" id="distBetween" name="distBetween" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="coeff">Refractive index:</label>
+            <input type="number" min=0 step=0.01 value=1.0002 id="coeff" name="coeff" oninput="validity.valid||(value='');"/><br>
             <br>
             <input type="submit" id="build" value="Get graph">
         </fieldset><br>
     </div>
 
     <div id="answer1" class="graph"></div>
-    <div id="answer2" class="graph"></div>
-    <div id="answer3" class="graph"></div>
-    <div id="answer41" class="graph"></div>
-    <div id="answer42" class="graph"></div>
-    <div id="answer43" class="graph"></div>
 </main>
 </body>
 <script>
-    name = "Amplitude modulation"
+    name = "Young's interference experiment"
     document.title = name
     document.getElementById("legend").insertAdjacentText("afterbegin", name)
 </script>
