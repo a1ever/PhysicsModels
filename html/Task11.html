@@ -18,14 +18,12 @@
             <legend id="legend"></legend>
             <label for="wavelength">Wavelength of light (nm):</label>
             <input type="number" min=0 step="any" id="wavelength" name="wavelength" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
-            <label for="radius">Lens radius (m):</label>
-            <input type="number" min=0 step="any" id="radius" name="radius" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
-            <label for="coeffLens">Refractive index (lens):</label>
-            <input type="number" min=0 step=0.01 value=1.501 id="coeffLens" name="coeffLens" oninput="validity.valid||(value='');"/><br>
-            <label for="coeffPlate">Refractive index (Plate):</label>
-            <input type="number" min=0 step=0.01 value=1.501 id="coeffPlate" name="coeffPlate" oninput="validity.valid||(value='');"/><br>
-            <label for="coeffBetween">Refractive index (between):</label>
-            <input type="number" min=0 step=0.01 value=1.001 id="coeffBetween" name="coeffBetween" oninput="validity.valid||(value='');"/><br>
+            <label for="gaps">Gaps amount:</label>
+            <input type="number" min=0 step=1 id="gaps"  value=2 name="gaps" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="dist">Gap distance (µm):</label>
+            <input type="number" min=0 step=0.01 id="dist" name="dist" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
+            <label for="period">Distance between gaps (µm):</label>
+            <input type="number" min=0 step=0.01 id="period" name="period" placeholder="Enter value greater or equal 0" oninput="validity.valid||(value='');"/><br>
             <br>
             <input type="submit" id="build" value="Get graph">
         </fieldset><br>
@@ -36,7 +34,7 @@
 </main>
 </body>
 <script>
-    name = "Newton's rings"
+    name = "Visualization of the diffraction pattern"
     document.title = name
     document.getElementById("legend").insertAdjacentText("afterbegin", name)
 </script>

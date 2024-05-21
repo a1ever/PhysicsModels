@@ -6,48 +6,34 @@ function normalizeValues(arr) {
     return arr.map(value => (value - min) / (max - min));
 }
 
-function createCircleGrid(xs, zs) {
-    const radius = Math.floor(xs.length);
-    const gridSize = 2 * radius + 1;
-    const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(0));
-    const centerX = radius;
-    const centerY = radius;
-
-    const normalizedZs = normalizeValues(zs);
-    normalizedZs.forEach((value, index) => {
-        for (let j = 0; j < 360; j+=0.01) {
-            let angle = j*Math.PI/180;
-            const x = centerX+  Math.round(index * Math.cos(angle));
-            const y = centerY+Math.round(index * Math.sin(angle));
-            grid[y][x] = value;
-        }
-    });
-
-    return grid;
-}
-
 function buildGraphic() {
     const lambda = parseFloat(document.getElementById('wavelength').value) * 1e-9;
-    const nBetween = parseFloat(document.getElementById('coeffBetween').value);
-    const nPlate = parseFloat(document.getElementById('coeffPlate').value);
-    const nLens = parseFloat(document.getElementById('coeffLens').value);
-    const r = parseFloat(document.getElementById('radius').value);
+    const N = parseFloat(document.getElementById('gaps').value);
+    const b = parseFloat(document.getElementById('dist').value) * 1e-6;
+    const d = parseFloat(document.getElementById('period').value) * 1e-6;
 
     const xs = [];
-    const xs2 = [];
     const ys = [];
-    const precision = 100000;
-    const R = Math.pow((nBetween-nPlate)/(nBetween+nPlate), 2);
-    const T = (4 * nBetween * nLens)/ Math.pow(nBetween+nLens, 2);
-    for (let x = -0.00333; x < 0; x += 1 / precision) {
-        xs2.push(x);
-    }
-    for (let x = 0; x <= 0.00333; x += 1 / precision) {
-        let i1 = Math.pow(T, 2) * R;
-        let i2 = R;
+    const precision = 100;
+
+    for (let x = -180; x <= 180; x += 1 / precision) {
+        let phi = x * Math.PI / 360;
         xs.push(x);
-        xs2.push(x);
-        ys.push(i2 + i1 + 2 * Math.sqrt(i1 * i2) * Math.cos(2 * Math.PI / lambda * (lambda/2 * (nBetween>nPlate?0:1) + nBetween * Math.pow(x, 2) / (2 * r))));
+        let u = ((Math.PI*b*Math.sin(phi))/lambda);
+        let delta = ((Math.PI*d*Math.sin(phi))/lambda);
+        ys.push(
+            Math.pow(
+            Math.sin(N*delta)
+                /
+            Math.sin(delta)
+            , 2)
+            *
+            Math.pow(
+            Math.sin(u)
+                    /
+            (u)
+            , 2)
+        );
     }
 
     let graphSettings = {
@@ -59,9 +45,9 @@ function buildGraphic() {
 
     Plotly.newPlot("answer1", [{x: xs, y: ys, mode: "lines"}],
         {
-            title: "I(r)",
+            title: "I(theta)",
             xaxis: {
-                title: 'r, m',
+                title: 'theta, °',
             },
             yaxis: {
                 autorange: true,
@@ -77,38 +63,26 @@ function buildGraphic() {
             autosize: true,
         }, graphSettings);
 
-
     Plotly.newPlot("answer2", [{
-             y: xs2, x: xs2, z: createCircleGrid(xs, ys), type: "heatmap", colorscale: [
+        x: xs, z: [normalizeValues(ys)], type: "heatmap", colorscale: [
                 [0, "rgb(0, 0, 0)"],
-                [0.1, "rgb(20, 20, 20)"],
-                [0.2, "rgb(40, 40, 40)"],
-                [0.3, "rgb(60, 60, 60)"],
-                [0.4, "rgb(80, 80, 80)"],
-                [0.5, "rgb(100, 100, 100)"],
-                [0.6, "rgb(120, 120, 120)"],
-                [0.7, "rgb(140, 140, 140)"],
-                [0.8, "rgb(160, 160, 160)"],
-                [0.9, "rgb(180, 180, 180)"],
-                [1.0, "rgb(200, 200, 200)"]
+                [0.2, "rgb(90, 90, 90)"],
+                [0.5, "rgb(150, 150, 150)"],
+                [0.8, "rgb(200, 200, 200)"],
+                [1.0, "rgb(250, 250, 250)"]
             ],
             showscale: false,
         }],
         {
-            title: "Newton's Rings",
+            title: "Visualization of the diffraction pattern",
             xaxis: {
                 autorange: true,
-                showgrid: false,
-                zeroline: false,
-                showticklabels: false,
             },
             yaxis: {
                 autorange: true,
                 showgrid: false,
                 zeroline: false,
                 showticklabels: false,
-                scaleanchor:"x",
-                scaleratio: 1,
             },
             plot_bgcolor: '#363636',
             paper_bgcolor: '#050505',
