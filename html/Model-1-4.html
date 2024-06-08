@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/fonts/americantext.css">
+    <link rel="stylesheet" href="../css/Main.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script defer src="../js/Tasks/Model-1-4.js"></script>
+    <script defer src="../js/header.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="header"></div>
+<main class="wrap">
+    <div class="background"></div>
+    <div class="info">
+        <fieldset>
+            <legend id="legend"></legend>
+            <label for="suspension_length">Длина подвеса (м):</label>
+            <input type="text" id="suspension_length" placeholder=">0" value="12">
+            <label for="spring_distance">Расстояние до пружины (м):</label>
+            <input type="text" id="spring_distance" placeholder=">0" value="6">
+            <label for="mass">Масса маятника (кг):</label>
+            <input type="text" id="mass" placeholder=">0" value="1">
+            <label for="attenuation_coefficient">Коэффициент затухания (Гц):</label>
+            <input type="text" id="attenuation_coefficient" size="10" placeholder=">=0" value="0.001">
+            <label for="stiffness_coefficient">Коэффициент жёсткости пружины (Н/м):</label>
+            <input type="text" id="stiffness_coefficient" placeholder=">=0" value="0.24">
+            <label for="initial_deviation_1">Начальное отклонение первого (градусы):</label>
+            <input type="text" id="initial_deviation_1" placeholder="-90<phi<90" value="60">
+            <label for="initial_deviation_2">Начальное отклонение второго (градусы):</label>
+            <input type="text" id="initial_deviation_2" placeholder="-90<phi<90" value="12">
+            <input type="submit" id="build" value="Запуск">
+        </fieldset><br>
+    </div>
+
+    <div class="info">
+        <h2>Нормальные частоты</h2>
+        <p>Частота 1: <span id="frequency_1">-</span></p>
+        <p>Частота 2: <span id="frequency_2">-</span></p>
+    </div>
+
+    <div id="answer1" class="graph"></div>
+    <div id="answer2" class="graph"></div>
+    <div id="answer3" class="graph"></div>
+    <div id="answer4" class="graph"></div>
+</main>
+</body>
+<script>
+    name = "Связанные маятники"
+    document.title = name
+    document.getElementById("legend").insertAdjacentText("afterbegin", name)
+</script>
+</html>

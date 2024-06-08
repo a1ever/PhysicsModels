@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/fonts/americantext.css">
+    <link rel="stylesheet" href="../css/Main.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script defer src="../js/Tasks/Model-2-3.js"></script>
+    <script defer src="../js/header.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="header"></div>
+<main class="wrap">
+    <div class="background"></div>
+    <div class="info">
+        <fieldset>
+            <legend id="legend"></legend>
+            <label>Cвет:</label>
+            <div>
+                <label><input style="position: relative" type="radio" id="m" name="light_type" value="m" checked oninput="document.getElementById('quasi').style.display='none';document.getElementById('mono').style.display='block';">Монохроматический</label>
+                <label><input style="position: relative" type="radio" id="q" name="light_type" value="q" oninput="document.getElementById('quasi').style.display='block';document.getElementById('mono').style.display='none';">Квазимонохроматический
+            </label>
+            </div>
+            <br>
+            <div id="mono">
+                <label for="wavelength">Длина волны (нм):</label>
+                <input type="text" id="wavelength" size="10" placeholder=">0" value="420">
+                <br>
+            </div>
+
+            <div id="quasi" style="display: none;">
+                <label for="wavelength_mid">Середина спектра (нм):</label>
+                <input type="text" id="wavelength_mid" size="10" placeholder=">0" value="500">
+                <br>
+
+                <label for="wavelength_wide">Ширина спектра (нм):</label>
+                <input type="text" id="wavelength_wide" size="10" placeholder=">0" value="100">
+                <br>
+            </div>
+            <label for="lens_radius">Радиус линзы (м):</label>
+            <input type="text" id="lens_radius" size="10" placeholder=">0" value="1">
+            <label for="nLens">Коэффициент преломления линзы:</label>
+            <input type="text" id="nLens" size="10" placeholder=">=1" value="1.69">
+            <label for="nPlate">Коэффициент преломления пластины:</label>
+            <input type="text" id="nPlate" size="10" placeholder=">=1" value="3.66">
+            <label for="nBetween">Коэффициент преломления среды:</label>
+            <input type="text" id="nBetween" size="10" placeholder=">=1" value="4">
+            <input type="submit" id="build" value="Get graph">
+        </fieldset><br>
+    </div>
+
+    <div id="answer1" class="graph"></div>
+    <div id="answer2" class="graph"></div>
+    <div id="answer3" class="graph"></div>
+</main>
+</body>
+<script>
+    name = "Кольца Ньютона"
+    document.title = name
+    document.getElementById("legend").insertAdjacentText("afterbegin", name)
+</script>
+</html>
